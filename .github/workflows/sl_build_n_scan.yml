@@ -3,8 +3,14 @@
 name: ShiftLeft
 
 on:
+  # Trigger the workflow on push or pull request,
+  # but only for the main branch
+  push:
+    branches:
+      - main
   pull_request:
-  workflow_dispatch:
+    branches:
+      - main
 
 jobs:
   NextGen-Static-Analysis:
@@ -49,7 +55,8 @@ jobs:
         }
         Invoke-RestMethod @params
     - name: Validate Build Rules
-      run: |
+      if: ${{ github.event_name == 'pull_request' }}
+      run: 
         .\sl check-analysis --app shiftleft-csharp-demo `
         --branch "${{ github.head_ref || steps.extract_branch.outputs.branch }}" `
         --report `

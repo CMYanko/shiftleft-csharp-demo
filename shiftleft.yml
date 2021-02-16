@@ -1,11 +1,10 @@
+source:
+  branch: main
 build_rules:
-  - id: allow-zero-findings
+  - id: no-high-findings
     finding_types:
       - vuln
       - secret
-      - insight
     severity:
-      - SEVERITY_MEDIUM_IMPACT
       - SEVERITY_HIGH_IMPACT
-      - SEVERITY_LOW_IMPACT
-    threshold: 0
+

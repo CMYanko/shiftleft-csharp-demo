@@ -38,7 +38,7 @@ jobs:
       env:
         SHIFTLEFT_ACCESS_TOKEN: ${{ secrets.SHIFTLEFT_ACCESS_TOKEN }}
     - name: Sleep for 10 seconds
-      run: timeout 10
+      run: Start-Sleep -Second 10
     - name: Validate Build Rules
       if: ${{ github.event_name == 'pull_request' }}
       run: 
